@@ -64,7 +64,7 @@ public class Player {
      * Метод принимает жанр и возвращает игру этого жанра, в которую играли больше всего
      * Если в игры этого жанра не играли, возвращается null
      */
-    public Game[] mostPlayerByGenre(String gener) {
+    public Game mostPlayerByGenre() {
         return null;
     }
 
