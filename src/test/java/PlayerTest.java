@@ -80,7 +80,7 @@ public class PlayerTest {
 
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
-        assertThrows(RuntimeException.class, () -> { player.play(game, 3);});
+        assertThrows(RuntimeException.class, () -> { player.play(game,3);});
     }
     @Test
     public void returnMostPlayerByGenre(){
@@ -119,9 +119,9 @@ public class PlayerTest {
         player.play(game1,4);
         player.play(game2,5);
 
-        Game[] expected = null;
-        Game[] actual = player.mostPlayerByGenre("Гонки");
+        Game expected = null;
+        Game actual = player.mostPlayerByGenre("Гонки");
         assertArrayEquals(expected, actual);
 
-    }
+  }
 }

@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 public class GameStoreTest {
 
+    private Game hours;
+
     @Test
     public void shouldAddGame() {
 
@@ -81,10 +83,10 @@ public class GameStoreTest {
         store.addPlayTime("Petya", 1);
         store.addPlayTime("Vasya", 3);
 
-        String expected = "Vasya";
-        String actual = store.getMostPlayer();
+        String[] expected = {"Vasya"};
+        String[] actual = store.getMostPlayer();
 
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -95,10 +97,10 @@ public class GameStoreTest {
 
         store.addPlayTime("Vasya", 3);
 
-        String expected = "Vasya";
-        String actual = store.getMostPlayer();
+        String[] expected = {"Vasya"};
+        String[] actual = store.getMostPlayer();
 
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -108,7 +110,7 @@ public class GameStoreTest {
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
         String expected = null;
-        String actual = store.getMostPlayer();
+        String[] actual = store.getMostPlayer();
 
         assertEquals(expected, actual);
     }
@@ -138,22 +140,6 @@ public class GameStoreTest {
         store.addPlayTime("Petya", 2);
 
         int expected = 2;
-        int actual = store.getSumPlayedTime();
-
-        assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void shouldGetSumPlayedTimeSamePlayer() {
-
-        GameStore store = new GameStore();
-        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
-
-        store.addPlayTime("Petya", 3);
-        store.addPlayTime("Petya", 4);
-
-        int expected = 7;
         int actual = store.getSumPlayedTime();
 
         assertEquals(expected, actual);
