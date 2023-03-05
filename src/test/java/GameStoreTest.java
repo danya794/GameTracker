@@ -2,7 +2,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-
 public class GameStoreTest {
 
     private Game hours;
@@ -13,10 +12,8 @@ public class GameStoreTest {
         GameStore store = new GameStore();
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
-
         assertTrue(store.containsGame(game));
     }
-
 
     @Test
     public void shouldAddGameNoNameNoGenre() {
@@ -148,6 +145,4 @@ public class GameStoreTest {
         assertEquals(expected, actual);
 
     }
-
-
 }
