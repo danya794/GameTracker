@@ -31,7 +31,7 @@ public class PlayerTest {
 
 
         int expected = 3;
-        int actual = player.play(game,3);
+        int actual = player.sumGenre(game.getGenre());
         assertEquals(expected, actual);
     }
     @Test
@@ -98,9 +98,9 @@ public class PlayerTest {
         player.play(game1,4);
         player.play(game2,5);
 
-        Game[] expected = {game2};
-        Game[] actual = player.mostPlayerByGenre("Стратегии");
-        assertArrayEquals(expected, actual);
+        Game expected = game2;
+        Game actual = player.mostPlayerByGenre("Стратегии");
+        assertEquals(expected, actual);
 
    }
     @Test
@@ -117,11 +117,11 @@ public class PlayerTest {
         player.installGame(game2);
         player.play(game, 3);
         player.play(game1,4);
-        player.play(game2,5);
+        //player.play(game2,5);
 
-        Game[] expected = null;
-        Game[] actual = player.mostPlayerByGenre("Гонки");
-        assertArrayEquals(expected, actual);
+        Game expected = null;
+        Game actual = player.mostPlayerByGenre("Стратегии");
+        assertEquals(expected, actual);
 
     }
 }
