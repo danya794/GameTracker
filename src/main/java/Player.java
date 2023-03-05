@@ -15,16 +15,17 @@ public class Player {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
+    //public String getName() {
+        //return name;
+    //}
 
     /**
      * добавление игры игроку
      * если игра уже была, никаких изменений происходить не должно
      */
     public void installGame(Game game) {
-        playedTime.put(game, 0);
+        playedTime.putIfAbsent(game, 0);
+
     }
 
     /**
@@ -37,9 +38,9 @@ public class Player {
     public int play(Game game, int hours) {
         game.getStore().addPlayTime(name, hours);
         if (playedTime.containsKey(game)) {
-            playedTime.put(game, playedTime.get(game));
+            playedTime.merge(game, hours, (oldValue, newValue) -> oldValue + newValue);
         } else {
-            playedTime.put(game, hours);
+            throw new NotInstallException(game.getTitle());
         }
         return playedTime.get(game);
     }
@@ -53,8 +54,6 @@ public class Player {
         for (Game game : playedTime.keySet()) {
             if (game.getGenre().equals(genre)) {
                 sum += playedTime.get(game);
-            } else {
-                sum = 0;
             }
         }
         return sum;
@@ -64,9 +63,19 @@ public class Player {
      * Метод принимает жанр и возвращает игру этого жанра, в которую играли больше всего
      * Если в игры этого жанра не играли, возвращается null
      */
-    public Game[] mostPlayerByGenre(String gener) {
-        return null;
+
+    public Game mostPlayerByGenre(String genre) {
+        int maxTime = 0;
+        Game maxGame = null;
+        for (Game game : playedTime.keySet()) {
+            if (game.getGenre().equals(genre)) {
+                int playerTime = playedTime.get(game);
+                if (playerTime > maxTime) {
+                    maxTime = playerTime;
+                    maxGame = game;
+                }
+            }
+        }
+        return maxGame;
     }
-
-
 }
