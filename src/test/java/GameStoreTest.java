@@ -2,14 +2,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Period;
+
 public class GameStoreTest {
 
-    /*@Test
-=======
     private Game hours;
 
     @Test
->>>>>>> 6ea927b933a833b8ef77ba99409fe4380757b3e3
+
     public void shouldAddGame() {
 
         GameStore store = new GameStore();
@@ -17,6 +17,25 @@ public class GameStoreTest {
 
         assertTrue(store.containsGame(game));
     }
+
+    @Test
+    public void shouldAddNoGame() {
+
+        GameStore store = new GameStore();
+        Game game = null;
+
+        assertFalse(store.containsGame(game));
+    }
+
+    @Test
+    public void shouldAddGameNull() {
+        GameStore store = new GameStore();
+        Game game1 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game = null;
+
+        assertFalse(store.containsGame(game));
+    }
+
 
     @Test
     public void shouldAddGameNoNameNoGenre() {
@@ -119,6 +138,22 @@ public class GameStoreTest {
     }
 
     @Test
+    public void shouldCheckWhoPlayMostTime() {
+
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+
+        store.addPlayTime("Petya", 1);
+        store.addPlayTime("Vasya", 0);
+
+        String[] expected = {"Petya"};
+        String[] actual = store.getMostPlayer();
+
+        assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
     public void shouldGetSumPlayedTime() {
 
         GameStore store = new GameStore();
@@ -146,23 +181,5 @@ public class GameStoreTest {
         int actual = store.getSumPlayedTime();
 
         assertEquals(expected, actual);
-
     }
-<<<<<<< HEAD
-
-    @Test
-    public void shouldGetSumPlayedTimeSamePlayer() {
-
-        GameStore store = new GameStore();
-        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
-
-        store.addPlayTime("Petya", 3);
-        store.addPlayTime("Petya", 4);
-
-        int expected = 7;
-        int actual = store.getSumPlayedTime();
-
-        assertEquals(expected, actual);
-
-    }*/
 }
