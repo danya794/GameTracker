@@ -119,9 +119,9 @@ public class PlayerTest {
         player.play(game1,4);
         player.play(game2,5);
 
-        Game[] expected = null;
-        Game[] actual = player.mostPlayerByGenre("Гонки");
+        Game expected = null;
+        Game actual = player.mostPlayerByGenre("Гонки");
         assertArrayEquals(expected, actual);
 
-    }
+  }
 }
