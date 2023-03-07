@@ -182,4 +182,33 @@ public class GameStoreTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void shouldAddCopyOfGame() {
+
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game1 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+
+        assertTrue(store.containsGame(game));
+        assertTrue(store.containsGame(game1));
+
+    }
+
+    @Test
+    public void shouldAddCopyOfGames() {
+
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game1 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game2 = store.publishGame("NFS", "Racing");
+        Game game3 = store.publishGame("NFS", "Racing");
+
+        assertTrue(store.containsGame(game));
+        assertTrue(store.containsGame(game1));
+        assertTrue(store.containsGame(game2));
+        assertTrue(store.containsGame(game3));
+
+    }
+    
 }
